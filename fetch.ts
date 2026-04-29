@@ -14,7 +14,7 @@ function getEmoteList(a) {
 
 
 const a = await fs.readdir("dataset/")
-const list = []
+const list1 = []
 for (const b of a) {
     const c = uri.join("dataset/", b)
     console.log("read:", b)
@@ -22,13 +22,22 @@ for (const b of a) {
     const e = JSON.parse(d)
 
     if (e.data.package) {
-        list.push(e.data.package)
+        list1.push(e.data.package)
     } else if (e.data.packages) {
         for (const f of e.data.packages) {
-            list.push(f)
+            list1.push(f)
         }
     } else {
         console.log("unknown data:", b)
+    }
+}
+const set = new Set()
+const list = []
+for (const b of list1) {
+    if (set.has(b.id)) {
+    } else {
+        set.add(b.id)
+        list.push(b)
     }
 }
 console.log()
